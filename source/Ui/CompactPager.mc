@@ -44,6 +44,10 @@ module CompactLib {
 			function show(){
 			    WatchUi.pushView(new Ui.CompactPagerView(self.weak()), new Ui.CompactPagerDelegate(self.weak()), WatchUi.SLIDE_LEFT);
 			}
+			
+			function switchTo(){
+			    WatchUi.switchToView(new Ui.CompactPagerView(self.weak()), new Ui.CompactPagerDelegate(self.weak()), WatchUi.SLIDE_LEFT);
+			}
 		}
 
 		class CompactPagerView extends WatchUi.View {

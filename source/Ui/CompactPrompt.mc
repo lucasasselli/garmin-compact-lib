@@ -4,8 +4,8 @@ using CompactLib.StringHelper;
 
 module CompactLib {
 
-	(:UI)
-	module UI {
+	(:Ui)
+	module Ui {
 	
 		class CompactPrompt {
 
