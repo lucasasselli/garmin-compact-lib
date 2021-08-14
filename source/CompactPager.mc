@@ -113,7 +113,12 @@ module CompactLib {
         }
 
 		function onSelect() {
-			ref.callbacks[ref.selected].invoke();
+			var callback = ref.callbacks[ref.selected];
+			
+			if(callback != null){
+				 callback.invoke();
+			}
+			
 			return true;
 		}
 		
