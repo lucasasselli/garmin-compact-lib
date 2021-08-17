@@ -6,7 +6,7 @@ module CompactLib {
 
 	(:Ui)
 	module Ui {
-	
+
 		class CompactPrompt {
 
 			hidden var yesCallback;
@@ -23,7 +23,7 @@ module CompactLib {
 				WatchUi.pushView(new WatchUi.Confirmation(StringHelper.get(msg)), new CompactPromptDelegate(yesCallback, noCallback), WatchUi.SLIDE_LEFT);
 			}
 		}
-		
+
 		class CompactPromptDelegate extends WatchUi.ConfirmationDelegate {
 
 			hidden var yesCallback;
@@ -39,16 +39,14 @@ module CompactLib {
 				if(response == CONFIRM_YES){
 					if(yesCallback != null){
 						yesCallback.invoke();
-					}else{
-						WatchUi.popView(WatchUi.SLIDE_RIGHT);
 					}
 				}else{
 					if(noCallback != null){
 						noCallback.invoke();
-					}else{
-						WatchUi.popView(WatchUi.SLIDE_RIGHT);
 					}
 				}
+
+                return true;
 			}
 		}
 	}
