@@ -3,7 +3,7 @@ using Toybox.Lang;
 
 module CompactLib {
 
-	(:Utils)
+	(:StringHelper)
 	module StringHelper {
 
         function substringReplace(str, oldString, newString){

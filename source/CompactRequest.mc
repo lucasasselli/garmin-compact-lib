@@ -14,18 +14,23 @@ module CompactLib {
 			hidden var context;
             hidden var progressText;
             hidden var errorMessages;
+            hidden var options;
 
 			hidden var progressView;
 
-			function initialize(callback, context, progressText, errorMessages) {
-				self.callback = callback;
-				self.context = context;
-                self.progressText = progressText;
+			function initialize(errorMessages) {
                 self.errorMessages = errorMessages;
 			}
 
-			function request(url, params, options){
+            function setOptions(options){
+                self.options = options;
+            }
+
+			function request(url, params, callback, context){
                 System.println("Request: " + url);
+
+				self.callback = callback;
+				self.context = context;
 
                 if(options == null){
                     options = {
@@ -33,31 +38,39 @@ module CompactLib {
                         :responseType => Communications.HTTP_RESPONSE_CONTENT_TYPE_JSON
                     };
                 }
-				Communications.makeWebRequest(url, params, options, self.method(:onResponse));
+
+                if(errorMessages == null){
+                    Communications.makeWebRequest(url, params, options, self.method(:onResponseWithError));
+                }else{
+                    Communications.makeWebRequest(url, params, options, self.method(:onResponse));
+                }
 			}
 
-			function requestShowProgress(url, params, options){
-				progressView = new WatchUi.ProgressBar(progressText, null);
-				WatchUi.pushView(progressView, new ProgressDelegate(), WatchUi.SLIDE_LEFT);
-				request(url, params, options);
+			function requestShowProgress(url, params, callback, context){
+				// progressView = new WatchUi.ProgressBar(Application.loadResource(CompactLib.Rez.Strings.progress), null);
+				progressView = new WatchUi.ProgressBar("Loading...", null);
+				WatchUi.pushView(progressView, new RemoteProgressDelegate(), WatchUi.SLIDE_LEFT);
+				request(url, params, callback, context);
 			}
 
-			function requestSwitchToProgress(url, params, options){
-				progressView = new WatchUi.ProgressBar(progressText, null);
-				WatchUi.switchToView(progressView, new ProgressDelegate(), WatchUi.SLIDE_LEFT);
-				request(url, params, options);
+			function requestSwitchToProgress(url, params, callback, context){
+				// progressView = new WatchUi.ProgressBar(Application.loadResource(CompactLib.Rez.Strings.progress), null);
+				progressView = new WatchUi.ProgressBar("Loading...", null);
+				WatchUi.switchToView(progressView, new RemoteProgressDelegate(), WatchUi.SLIDE_LEFT);
+				request(url, params, callback, context);
 			}
 
-			function requestPickerFixProgress(url, params, options){
-				progressView = new WatchUi.ProgressBar(progressText, null);
-				WatchUi.switchToView(progressView, new ProgressDelegate(), WatchUi.SLIDE_IMMEDIATE);
-				request(url, params, options);
-				WatchUi.pushView(progressView, new ProgressDelegate(), WatchUi.SLIDE_LEFT);
+			function requestPickerFixProgress(url, params, callback, context){
+				//progressView = new WatchUi.ProgressBar(Application.loadResource(CompactLib.Rez.Strings.progress), null);
+				progressView = new WatchUi.ProgressBar("Loading...", null);
+				WatchUi.switchToView(progressView, new RemoteProgressDelegate(), WatchUi.SLIDE_IMMEDIATE);
+				request(url, params, callback, context);
+				WatchUi.pushView(progressView, new RemoteProgressDelegate(), WatchUi.SLIDE_LEFT);
 			}
 
 			function onResponse(code, data) {
 			    System.println("Response: " + code);
-				
+
 				if(code == 200){
 					callback.invoke(data, context);
                 }else if(progressView != null && (code == null || code == Communications.REQUEST_CANCELLED)){
@@ -76,9 +89,14 @@ module CompactLib {
                     }
 				}
 			}
+
+			function onResponseWithError(code, data) {
+			    System.println("Response: " + code);
+                callback.invoke(code, data, context);
+            }
 		}
 
-		class ProgressDelegate extends WatchUi.BehaviorDelegate
+		class RemoteProgressDelegate extends WatchUi.BehaviorDelegate
 		{
 			function initialize() {
 				BehaviorDelegate.initialize();
