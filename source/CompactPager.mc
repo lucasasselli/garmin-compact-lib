@@ -3,6 +3,7 @@ using Toybox.Graphics;
 using Toybox.System;
 using Toybox.Lang;
 
+using CompactLib.Ui;
 using CompactLib.StringHelper;
 
 module CompactLib {
@@ -11,7 +12,7 @@ module CompactLib {
 	module Ui {
 
 		class Page {
-		
+
 			function initialize() {
 			}
 
@@ -42,11 +43,11 @@ module CompactLib {
 			}
 
 			function show(){
-			    WatchUi.pushView(new Ui.CompactPagerView(self.weak()), new Ui.CompactPagerDelegate(self.weak()), WatchUi.SLIDE_LEFT);
+			    WatchUi.pushView(new CompactPagerView(self.weak()), new CompactPagerDelegate(self.weak()), WatchUi.SLIDE_LEFT);
 			}
-			
+
 			function switchTo(){
-			    WatchUi.switchToView(new Ui.CompactPagerView(self.weak()), new Ui.CompactPagerDelegate(self.weak()), WatchUi.SLIDE_LEFT);
+			    WatchUi.switchToView(new CompactPagerView(self.weak()), new CompactPagerDelegate(self.weak()), WatchUi.SLIDE_LEFT);
 			}
 		}
 
@@ -99,7 +100,7 @@ module CompactLib {
         function onPreviousPage() {
             if(ref.selected > 0){
                 ref.selected--;
-			    WatchUi.switchToView(new Ui.CompactPagerView(ref.weak()), new Ui.CompactPagerDelegate(ref.weak()), WatchUi.SLIDE_DOWN);
+			    WatchUi.switchToView(new CompactPagerView(ref.weak()), new CompactPagerDelegate(ref.weak()), WatchUi.SLIDE_DOWN);
             }
             return true;
         }
@@ -107,25 +108,25 @@ module CompactLib {
         function onNextPage() {
             if(ref.selected < ref.pages.size() - 1){
                 ref.selected++;
-			    WatchUi.switchToView(new Ui.CompactPagerView(ref.weak()), new Ui.CompactPagerDelegate(ref.weak()), WatchUi.SLIDE_UP);
+			    WatchUi.switchToView(new CompactPagerView(ref.weak()), new CompactPagerDelegate(ref.weak()), WatchUi.SLIDE_UP);
             }
             return true;
         }
 
 		function onSelect() {
 			var callback = ref.callbacks[ref.selected];
-			
+
 			if(callback != null){
 				 callback.invoke();
 			}
-			
+
 			return true;
 		}
-		
+
 		function onBack() {
             if(ref.selected > 0){
                 ref.selected--;
-			    WatchUi.switchToView(new Ui.CompactPagerView(ref.weak()), new Ui.CompactPagerDelegate(ref.weak()), WatchUi.SLIDE_DOWN);
+			    WatchUi.switchToView(new CompactPagerView(ref.weak()), new CompactPagerDelegate(ref.weak()), WatchUi.SLIDE_DOWN);
 				return true;
             }else{
 				return false;

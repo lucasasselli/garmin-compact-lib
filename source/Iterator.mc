@@ -1,35 +1,42 @@
-class Iterator {
+module CompactLib {
 
-    hidden var i = -1;
-    hidden var object = 0;
+	(:Utils)
+	module Utils {
 
-    hidden var actionCallback;
-    hidden var doneCallback;
+        class Iterator {
 
-    function initialize(object, actionCallback, doneCallback){
-        self.object = object;
-        self.actionCallback = actionCallback;
-        self.doneCallback = doneCallback;
-    }
+            hidden var i = -1;
+            hidden var object = 0;
 
-    function index(){
-        return i;
-    }
+            hidden var actionCallback;
+            hidden var doneCallback;
 
-    function item(){
-        return object[i];
-    }
+            function initialize(object, actionCallback, doneCallback){
+                self.object = object;
+                self.actionCallback = actionCallback;
+                self.doneCallback = doneCallback;
+            }
 
-    function size(){
-        return object.size();
-    }
+            function index(){
+                return i;
+            }
 
-    function next(){
-        i++;
-        if(i >= object.size()){
-            doneCallback.invoke();
-        }else{
-            actionCallback.invoke(object[i]);
+            function item(){
+                return object[i];
+            }
+
+            function size(){
+                return object.size();
+            }
+
+            function next(){
+                i++;
+                if(i >= object.size()){
+                    doneCallback.invoke();
+                }else{
+                    actionCallback.invoke(object[i]);
+                }
+            }
         }
     }
 }

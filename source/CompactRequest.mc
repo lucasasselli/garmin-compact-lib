@@ -47,25 +47,27 @@ module CompactLib {
 			}
 
 			function requestShowProgress(url, params, callback, context){
-				// progressView = new WatchUi.ProgressBar(Application.loadResource(CompactLib.Rez.Strings.progress), null);
-				progressView = new WatchUi.ProgressBar("Loading...", null);
+				progressView = new WatchUi.ProgressBar(Application.loadResource(CompactLib.Rez.Strings.progressMsg), null);
 				WatchUi.pushView(progressView, new RemoteProgressDelegate(), WatchUi.SLIDE_LEFT);
 				request(url, params, callback, context);
 			}
 
 			function requestSwitchToProgress(url, params, callback, context){
-				// progressView = new WatchUi.ProgressBar(Application.loadResource(CompactLib.Rez.Strings.progress), null);
-				progressView = new WatchUi.ProgressBar("Loading...", null);
+				progressView = new WatchUi.ProgressBar(Application.loadResource(CompactLib.Rez.Strings.progressMsg), null);
 				WatchUi.switchToView(progressView, new RemoteProgressDelegate(), WatchUi.SLIDE_LEFT);
 				request(url, params, callback, context);
 			}
 
-			function requestPickerFixProgress(url, params, callback, context){
-				//progressView = new WatchUi.ProgressBar(Application.loadResource(CompactLib.Rez.Strings.progress), null);
-				progressView = new WatchUi.ProgressBar("Loading...", null);
-				WatchUi.switchToView(progressView, new RemoteProgressDelegate(), WatchUi.SLIDE_IMMEDIATE);
-				request(url, params, callback, context);
-				WatchUi.pushView(progressView, new RemoteProgressDelegate(), WatchUi.SLIDE_LEFT);
+			function requestPickerProgress(url, params, callback, context){
+				if (WatchUi has :TextPicker) {
+					progressView = new WatchUi.ProgressBar(Application.loadResource(CompactLib.Rez.Strings.progressMsg), null);
+					WatchUi.switchToView(progressView, new RemoteProgressDelegate(), WatchUi.SLIDE_IMMEDIATE);
+					request(url, params, callback, context);
+					WatchUi.pushView(progressView, new RemoteProgressDelegate(), WatchUi.SLIDE_LEFT);
+				}else{
+					requestSwitchToProgress(url, params, callback, context);
+				}
+
 			}
 
 			function onResponse(code, data) {

@@ -1,6 +1,5 @@
 using Toybox.WatchUi;
-
-using CompactLib.Ui;
+using CompactLib.StringHelper;
 
 module CompactLib {
 

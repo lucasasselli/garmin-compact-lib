@@ -1,12 +1,13 @@
 using Toybox.WatchUi;
 
 using CompactLib.StringHelper;
+using CompactLib.Ui;
 
 module CompactLib {
 
 	(:Ui)
 	module Ui {
-	
+
 		class CompactMenu {
 
 			var selected;

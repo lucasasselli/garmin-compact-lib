@@ -1,0 +1,13 @@
+<resources>
+	<drawable-list id="pickerBtnDone" background="Graphics.COLOR_TRANSPARENT">
+		<bitmap id="iconDone" filename="icons/picker_key_done.png" x="20%" y="20%" />
+	</drawable-list>
+
+	<drawable-list id="pickerBtnSpace" background="Graphics.COLOR_TRANSPARENT" >
+		<bitmap id="iconSpace" filename="icons/picker_key_space.png" x="20%" y="20%" />
+	</drawable-list>
+
+	<drawable-list id="pickerBtnBackspace" background="Graphics.COLOR_TRANSPARENT">
+		<bitmap id="iconBackspace" filename="icons/picker_key_backspace.png" x="20%" y="20%" />
+	</drawable-list>
+</resources>
