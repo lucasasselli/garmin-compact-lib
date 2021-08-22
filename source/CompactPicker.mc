@@ -180,19 +180,51 @@ module CompactLib {
 					switch(btn){
 
 						case BTN_DONE:
-                            return new CompactLib.Rez.Drawables.pickerBtnDone();
+                            return new WatchUi.Bitmap({
+                                :rezId=>Rez.Drawables.pickerBtnDone,
+                                :locX=> WatchUi.LAYOUT_HALIGN_CENTER,
+                                :locY=> WatchUi.LAYOUT_VALIGN_CENTER
+                            });
 						case BTN_SPACE:
-                            return new CompactLib.Rez.Drawables.pickerBtnSpace();
+                            return new WatchUi.Bitmap({
+                                :rezId=>Rez.Drawables.pickerBtnSpace,
+                                :locX=> WatchUi.LAYOUT_HALIGN_CENTER,
+                                :locY=> WatchUi.LAYOUT_VALIGN_CENTER
+                            });
 						case BTN_BACKSPACE:
-                            return new CompactLib.Rez.Drawables.pickerBtnBackspace();
+                            return new WatchUi.Bitmap({
+                                :rezId=>Rez.Drawables.pickerBtnBackspace,
+                                :locX=> WatchUi.LAYOUT_HALIGN_CENTER,
+                                :locY=> WatchUi.LAYOUT_VALIGN_CENTER
+                            });
 						case BTN_LC_LETTERS:
-							return new WatchUi.Text( {:text=>labelLCLetters, :color=>Graphics.COLOR_WHITE, :font=>Graphics.FONT_LARGE, :locX =>WatchUi.LAYOUT_HALIGN_CENTER, :locY=>WatchUi.LAYOUT_VALIGN_CENTER } );
+							return new WatchUi.Text({
+                                :text=>labelLCLetters,
+                                :color=>Graphics.COLOR_WHITE,
+                                :font=>Graphics.FONT_LARGE,
+                                :locX =>WatchUi.LAYOUT_HALIGN_CENTER,
+                                :locY=>WatchUi.LAYOUT_VALIGN_CENTER });
 						case BTN_UC_LETTERS:
-							return new WatchUi.Text( {:text=>labelUCLetters, :color=>Graphics.COLOR_WHITE, :font=>Graphics.FONT_LARGE, :locX =>WatchUi.LAYOUT_HALIGN_CENTER, :locY=>WatchUi.LAYOUT_VALIGN_CENTER } );
+							return new WatchUi.Text({
+                                :text=>labelUCLetters,
+                                :color=>Graphics.COLOR_WHITE,
+                                :font=>Graphics.FONT_LARGE,
+                                :locX =>WatchUi.LAYOUT_HALIGN_CENTER,
+                                :locY=>WatchUi.LAYOUT_VALIGN_CENTER });
 						case BTN_NUMBERS:
-							return new WatchUi.Text( {:text=>labelNumbers, :color=>Graphics.COLOR_WHITE, :font=>Graphics.FONT_LARGE, :locX =>WatchUi.LAYOUT_HALIGN_CENTER, :locY=>WatchUi.LAYOUT_VALIGN_CENTER } );
+							return new WatchUi.Text({
+                                :text=>labelNumbers,
+                                :color=>Graphics.COLOR_WHITE,
+                                :font=>Graphics.FONT_LARGE,
+                                :locX =>WatchUi.LAYOUT_HALIGN_CENTER,
+                                :locY=>WatchUi.LAYOUT_VALIGN_CENTER });
 						case BTN_SYMBOLS:
-							return new WatchUi.Text( {:text=>labelSymbols, :color=>Graphics.COLOR_WHITE, :font=>Graphics.FONT_LARGE, :locX =>WatchUi.LAYOUT_HALIGN_CENTER, :locY=>WatchUi.LAYOUT_VALIGN_CENTER } );
+							return new WatchUi.Text({
+                                :text=>labelSymbols,
+                                :color=>Graphics.COLOR_WHITE,
+                                :font=>Graphics.FONT_LARGE,
+                                :locX =>WatchUi.LAYOUT_HALIGN_CENTER,
+                                :locY=>WatchUi.LAYOUT_VALIGN_CENTER });
 					}
 				}
 			}
@@ -240,22 +272,22 @@ module CompactLib {
 
 					case CharacterFactory.BTN_LC_LETTERS:
 						newPicker = new FallbackPicker(CharacterFactory.MODE_LC_LETTERS, picker.getText());
-						WatchUi.switchToView(newPicker, new FallbackPickerDelegate(newPicker, callback), WatchUi.SLIDE_LEFT);
+						WatchUi.switchToView(newPicker, new FallbackPickerDelegate(newPicker, callback), WatchUi.SLIDE_IMMEDIATE);
 						break;
 
 					case CharacterFactory.BTN_UC_LETTERS:
 						newPicker = new FallbackPicker(CharacterFactory.MODE_UC_LETTERS, picker.getText());
-						WatchUi.switchToView(newPicker, new FallbackPickerDelegate(newPicker, callback), WatchUi.SLIDE_LEFT);
+						WatchUi.switchToView(newPicker, new FallbackPickerDelegate(newPicker, callback), WatchUi.SLIDE_IMMEDIATE);
 						break;
 
 					case CharacterFactory.BTN_NUMBERS:
 						newPicker = new FallbackPicker(CharacterFactory.MODE_NUMBERS, picker.getText());
-						WatchUi.switchToView(newPicker, new FallbackPickerDelegate(newPicker, callback), WatchUi.SLIDE_LEFT);
+						WatchUi.switchToView(newPicker, new FallbackPickerDelegate(newPicker, callback), WatchUi.SLIDE_IMMEDIATE);
 						break;
 
 					case CharacterFactory.BTN_SYMBOLS:
 						newPicker = new FallbackPicker(CharacterFactory.MODE_SYMBOLS, picker.getText());
-						WatchUi.switchToView(newPicker, new FallbackPickerDelegate(newPicker, callback), WatchUi.SLIDE_LEFT);
+						WatchUi.switchToView(newPicker, new FallbackPickerDelegate(newPicker, callback), WatchUi.SLIDE_IMMEDIATE);
 						break;
 
 					default:

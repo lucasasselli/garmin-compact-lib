@@ -1,0 +1,6 @@
+<drawables>
+
+	<bitmap id="pickerBtnDone" filename="picker_key_done.png" />
+	<bitmap id="pickerBtnSpace" filename="picker_key_space.png" />
+	<bitmap id="pickerBtnBackspace" filename="picker_key_backspace.png" />
+</drawables>
