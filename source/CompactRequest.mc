@@ -61,7 +61,7 @@ module CompactLib {
 			function requestPickerProgress(url, params, callback, context){
 				if (WatchUi has :TextPicker) {
 					progressView = new WatchUi.ProgressBar(Application.loadResource(CompactLib.Rez.Strings.progressMsg), null);
-					WatchUi.switchToView(progressView, new RemoteProgressDelegate(), WatchUi.SLIDE_IMMEDIATE);
+					WatchUi.switchToView(progressView, new RemoteProgressDelegate(), WatchUi.SLIDE_IMMEDIATE); // Ugly hack!!!
 					request(url, params, callback, context);
 					WatchUi.pushView(progressView, new RemoteProgressDelegate(), WatchUi.SLIDE_LEFT);
 				}else{

@@ -22,6 +22,10 @@ module CompactLib {
 			function show(){
 				WatchUi.pushView(new WatchUi.Confirmation(StringHelper.get(msg)), new CompactPromptDelegate(yesCallback, noCallback), WatchUi.SLIDE_LEFT);
 			}
+
+			function switchTo(){
+				WatchUi.switchToView(new WatchUi.Confirmation(StringHelper.get(msg)), new CompactPromptDelegate(yesCallback, noCallback), WatchUi.SLIDE_LEFT);
+			}
 		}
 
 		class CompactPromptDelegate extends WatchUi.ConfirmationDelegate {
