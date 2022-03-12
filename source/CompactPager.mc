@@ -57,7 +57,7 @@ module CompactLib {
 
 			function initialize(ref) {
                 self.ref = ref.get();
-				View.initialize();
+				WatchUi.View.initialize();
 			}
 
 			function onShow() {
