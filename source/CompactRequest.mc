@@ -73,7 +73,7 @@ module CompactLib {
 			function onResponse(code, data) {
 			    System.println("Response: " + code);
 
-				if(code == 200){
+				if(code == 200 || code == -400){
 					callback.invoke(data, context);
                 }else if(progressView != null && (code == null || code == Communications.REQUEST_CANCELLED)){
                     // Request cancelled by the user!
